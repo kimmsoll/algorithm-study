@@ -8,12 +8,12 @@ function solution(s) {
             if(pre === s.slice(j, j+step)){
                 cnt++;
             }else{
-                compressed += cnt>=2 ? String(cnt) + pre : pre;
+                compressed += cnt>=2 ? cnt + pre : pre;
                 pre = s.slice(j, j+step);
                 cnt = 1;
             }
         }
-        compressed += cnt>=2 ? String(cnt) + pre : pre;
+        compressed += cnt>=2 ? cnt + pre : pre;
         answer = Math.min(answer, compressed.length);
     }
     return answer;
