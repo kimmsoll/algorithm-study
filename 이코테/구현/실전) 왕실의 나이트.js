@@ -1,24 +1,47 @@
-function solution(mission){
-    const hor = ["1","2","3","4","5","6","7","8"];
-    const ver = ["a","b","c","d","e","f","g","h"];
-    const dx = [2,2,-2,-2,1,1,-1,-1];
-    const dy = [1,-1,1,-1,2,-2,2,-2];
-    let x = 0;
-    let y = 0;
-    let nx = 0;
-    let ny = 0;
-    let cnt = 0;
-    x = hor.indexOf(mission[1]);
-    y = ver.indexOf(mission[0]);
-    for(let i=0; i<7; i++){
-        nx = x + dx[i];
-        ny = y + dy[i];
-        if(nx < 0 || ny < 0 || nx > 7 || ny > 7){
-            continue;
-        }
-        cnt++;
+// 방법 1. 알파벳 배열 직접 구현
+
+const d = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+const input = 'a1';
+const x = +input[1];
+const y = +d.indexOf(input[0]) + 1;
+let count = 0;
+
+const steps = [
+    [1, 2], [1, -2], [-1, 2], [-1, -2],
+    [2, 1], [2, -1], [-2, 1], [-2, -1]
+];
+
+for (let i=0; i<steps.length; i++) {
+    const nx = x + steps[i][0];
+    const ny = y + steps[i][1];
+    if (nx < 1 || nx > 8 || ny < 1 || ny > 8) {
+        continue;
     }
-    return cnt;
+    count += 1;
 }
-    
-solution("a1");
+
+console.log(count);
+
+
+// 방법 2. charCodeAt 사용
+
+const input = 'a1';
+const x = +input[1];
+const y = input[0].charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+let count = 0;
+
+const steps = [
+    [1, 2], [1, -2], [-1, 2], [-1, -2],
+    [2, 1], [2, -1], [-2, 1], [-2, -1]
+];
+
+for (let i=0; i<steps.length; i++) {
+    const nx = x + steps[i][0];
+    const ny = y + steps[i][1];
+    if (nx < 1 || nx > 8 || ny < 1 || ny > 8) {
+        continue;
+    }
+    count += 1;
+}
+
+console.log(count);
