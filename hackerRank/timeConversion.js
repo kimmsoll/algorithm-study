@@ -31,17 +31,15 @@ function readLine() {
 
 function timeConversion(s) {
     // Write your code here
-    const timeZone = s.slice(-2);
-    let time = s.slice(0, -2).split(':');
-    if (timeZone === 'PM' && +time[0] >= 1 && +time[0] <= 11) {
-        time = `${12 + +time[0]}:${time[1]}:${time[2]}`;
-        return time;
-    } else if (timeZone === 'AM' && +time[0] === 12) {
-        time = `00:${time[1]}:${time[2]}`;
-        return time;
+    let [hh, mm, ss] = s.slice(0, -2).split(':');
+    let timeZone = s.slice(-2);
+    if (timeZone === 'PM' && Number(hh) < 12) {
+        hh = String(Number(hh) + 12).padStart(2, '0');
     }
-    time = time.join(':');
-    return time;
+    if (timeZone === 'AM' && Number(hh) === 12) {
+        hh = '00';
+    }
+    return [hh, mm, ss].join(':');
 }
 
 function main() {
