@@ -1,3 +1,24 @@
+// 세 번째 풀이
+function solution(progresses, speeds) {
+    const answer = [];
+    const progress = [];
+
+    for(let i=0; i<speeds.length; i++) {
+        progress.push(Math.ceil((100-progresses[i])/speeds[i]));
+    }
+    
+    while(progress.length) {
+        let curr = progress.shift();
+        let cnt = 1;
+        while(progress[0] <= curr) {
+            progress.shift();
+            cnt++;
+        }
+        answer.push(cnt);
+    }
+    return answer;
+}
+
 // 두 번째 풀이
 function solution(progresses, speeds) {
     let needDays = [];
