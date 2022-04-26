@@ -1,4 +1,4 @@
-function getPermutationsRep(arr, length) {
+function getPermutationsRe(arr, length) {
     let result = [];
     let temp = [];
     function DFS(n) {
